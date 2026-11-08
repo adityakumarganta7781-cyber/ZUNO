@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties ─────────────────────────────────────── */
+:root {
+  /* Light theme */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f4f4f5;
+  --bg-tertiary: #e9e9eb;
+  --border: #e4e4e7;
+  --border-strong: #d4d4d8;
+  --text-primary: #09090b;
+  --text-secondary: #52525b;
+  --text-muted: #a1a1aa;
+  --accent: #c8f135;
+  --accent-dark: #a8d020;
+  --accent-text: #3a4a00;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  /* Dark theme */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-tertiary: #1a1a1a;
+  --border: #242424;
+  --border-strong: #333333;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #52525b;
+  --accent: #c8f135;
+  --accent-dark: #a8d020;
+  --accent-text: #c8f135;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+/* ─── Base Styles ────────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-white dark:bg-dark-bg text-zinc-900 dark:text-zinc-50;
+    @apply font-sans;
+    @apply transition-colors duration-300;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-tight;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-300 dark:bg-zinc-700 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-zinc-400 dark:bg-zinc-600;
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-white dark:ring-offset-dark-bg;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: rgba(200, 241, 53, 0.3);
+    color: inherit;
+  }
+}
+
+/* ─── Component Utilities ────────────────────────────────────────── */
+@layer components {
+
+  /* Zuno card base */
+  .zuno-card {
+    @apply bg-white dark:bg-dark-card border border-light-border dark:border-dark-border rounded-xl;
+    @apply shadow-card dark:shadow-dark-card;
+    @apply transition-all duration-200;
+  }
+
+  .zuno-card-hover {
+    @apply hover:shadow-card-hover dark:hover:shadow-dark-card-hover;
+    @apply hover:border-zinc-300 dark:hover:border-zinc-600;
+    @apply hover:-translate-y-0.5;
+  }
+
+  /* Glass morphism */
+  .glass {
+    @apply bg-white/80 dark:bg-dark-card/80 backdrop-blur-xl;
+    @apply border border-white/20 dark:border-white/5;
+  }
+
+  /* Accent button */
+  .btn-accent {
+    @apply bg-accent hover:bg-accent-dark text-zinc-900 font-semibold;
+    @apply px-5 py-2.5 rounded-lg;
+    @apply transition-all duration-200;
+    @apply shadow-glow-accent hover:shadow-glow-accent-lg;
+    @apply active:scale-95;
+  }
+
+  /* Ghost button */
+  .btn-ghost {
+    @apply bg-transparent hover:bg-zinc-100 dark:hover:bg-dark-elevated text-zinc-700 dark:text-zinc-300;
+    @apply px-5 py-2.5 rounded-lg font-medium;
+    @apply transition-all duration-200;
+    @apply border border-transparent hover:border-zinc-200 dark:hover:border-dark-border;
+  }
+
+  /* Outline button */
+  .btn-outline {
+    @apply bg-transparent border border-light-border dark:border-dark-border;
+    @apply text-zinc-700 dark:text-zinc-300 font-medium;
+    @apply px-5 py-2.5 rounded-lg;
+    @apply hover:bg-zinc-50 dark:hover:bg-dark-elevated;
+    @apply transition-all duration-200;
+  }
+
+  /* Section container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  /* Sidebar link */
+  .sidebar-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium;
+    @apply text-zinc-600 dark:text-zinc-400;
+    @apply hover:bg-zinc-100 dark:hover:bg-dark-elevated;
+    @apply hover:text-zinc-900 dark:hover:text-zinc-100;
+    @apply transition-all duration-150;
+    @apply cursor-pointer select-none;
+  }
+
+  .sidebar-link.active {
+    @apply bg-accent/10 text-zinc-900 dark:text-zinc-50;
+    @apply font-semibold;
+  }
+
+  /* Input base */
+  .input-base {
+    @apply w-full px-3.5 py-2.5 rounded-lg text-sm;
+    @apply bg-zinc-50 dark:bg-dark-elevated;
+    @apply border border-light-border dark:border-dark-border;
+    @apply text-zinc-900 dark:text-zinc-100;
+    @apply placeholder:text-zinc-400 dark:placeholder:text-zinc-600;
+    @apply focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent;
+    @apply transition-all duration-150;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-zinc-900 to-zinc-600 dark:from-zinc-100 dark:to-zinc-400;
+    @apply bg-clip-text text-transparent;
+  }
+
+  .accent-gradient-text {
+    @apply bg-gradient-to-r from-accent to-accent-dark;
+    @apply bg-clip-text text-transparent;
+  }
+
+  /* Section heading */
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-widest;
+    @apply text-zinc-400 dark:text-zinc-500;
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-light-border dark:border-dark-border;
+  }
+
+  /* Skeleton shimmer */
+  .skeleton {
+    @apply relative overflow-hidden;
+    @apply bg-zinc-100 dark:bg-dark-elevated;
+    @apply rounded-lg;
+  }
+
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.08) 50%,
+        transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.8s linear infinite;
+  }
+}
+
+/* ─── Utility Classes ────────────────────────────────────────────── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  /* Grid dot pattern */
+  .dot-pattern {
+    background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
+
+@layer utilities {
+  .border-border {
+    border-color: var(--border, #e4e4e7);
+  }
+}
